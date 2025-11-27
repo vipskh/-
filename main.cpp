@@ -156,7 +156,7 @@ void ticTacToeAI() {
     char player = 'X';
     int difficulty;
 
-    cout << "\nSelect AI Difficulty:\n1. Easy\n2. Medium\n3. Insane\nChoice: ";
+    cout << "\nSelect Computer Difficulty:\n1. Easy\n2. Medium\n3. Insane\nChoice: ";
     cin >> difficulty;
 
     while(true) {
