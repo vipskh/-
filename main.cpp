@@ -178,7 +178,7 @@ void ticTacToeAI() {
             } else {
                 cout << "Invalid move. Try again.\n";
             }
-        } else { // AI turn
+        } else { 
             cout << "Computer is thinking...\n";
             if(difficulty==1) aiEasy();
             else if(difficulty==2) aiMedium();
