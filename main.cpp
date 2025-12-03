@@ -12,37 +12,29 @@ void diceGame() {
         cout << "\n=== Dice Rolling Game ===\n";
         cout << "Press Enter...";
         cin.ignore();
-
         int user1 = rollDice();
         int user2 = rollDice();
         int userTotal = user1 + user2;
-
         int comp1 = rollDice();
         int comp2 = rollDice();
         int compTotal = comp1 + comp2;
-
         cout << "You rolled: " << user1 << " and " << user2 << " (Total: " << userTotal << ")\n";
         cout << "Computer rolled: " << comp1 << " and " << comp2 << " (Total: " << compTotal << ")\n";
-
         if(userTotal > compTotal) cout << "You win!\n";
         else if(userTotal < compTotal) cout << "Computer wins!\n";
         else cout << "It's a tie!\n";
-
         cout << "Play again? (y/n): ";
         cin >> choice;
         cin.ignore();
     } while(choice == 'y' || choice == 'Y');
 }
-
 char board[3][3];
-
 void initBoard() {
     char c = '1';
     for(int i=0;i<3;i++)
         for(int j=0;j<3;j++)
             board[i][j] = c++;
 }
-
 void printBoard() {
     cout << "\n";
     for(int i=0;i<3;i++) {
@@ -55,7 +47,6 @@ void printBoard() {
     }
     cout << endl;
 }
-
 bool checkWin(char player) {
     for(int i=0;i<3;i++) {
         if(board[i][0]==player && board[i][1]==player && board[i][2]==player) return true;
@@ -97,7 +88,6 @@ bool tryWinOrBlock(char mark) {
     }
     return false;
 }
-
 void aiMedium() {
     if(!tryWinOrBlock('O')) {  
         if(!tryWinOrBlock('X')) { 
@@ -108,9 +98,7 @@ void aiMedium() {
 int minimax(bool isAI) {
     if(checkWin('O')) return 1;
     if(checkWin('X')) return -1;
-
     int score = isAI ? -100 : 100;
-
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             if(board[i][j]!='X' && board[i][j]!='O') {
@@ -118,18 +106,15 @@ int minimax(bool isAI) {
                 board[i][j] = isAI ? 'O':'X';
                 int moveScore = minimax(!isAI);
                 board[i][j] = temp;
-
                 if(isAI && moveScore>score) score = moveScore;
                 if(!isAI && moveScore<score) score = moveScore;
             }
         }
     }
-
     if(score==-100 && !isAI) return 0;
     if(score==100 && isAI) return 0;
     return score;
 }
-
 void aiInsane() {
     int bestScore = -100;
     int moveRow = -1, moveCol = -1;
@@ -205,7 +190,6 @@ do{
             }
             player='X';
         }
-
         if(turns==9) {
             printBoard();
             cout << "It's a tie!\n";
@@ -217,8 +201,7 @@ do{
         cin.ignore();
         
 }while(choice == 'y' || choice == 'Y');
-}
-        
+}     
 int main() {
     srand(time(0));
     char option;
@@ -229,7 +212,6 @@ int main() {
         cout << "3. Exit\n";
         cout << "Choose an option: ";
         cin >> option;
-
         switch(option) {
             case '1':
                 diceGame();
@@ -244,6 +226,4 @@ int main() {
                 cout << "Invalid option. Try again.\n";
         }
     } while(option!='3');
-
-    return 0;
 }
