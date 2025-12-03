@@ -23,6 +23,7 @@ void diceGame() {
         if(userTotal > compTotal) cout << "You win!\n";
         else if(userTotal < compTotal) cout << "Computer wins!\n";
         else cout << "It's a tie!\n";
+        
         cout << "Play again? (y/n): ";
         cin >> choice;
         cin.ignore();
