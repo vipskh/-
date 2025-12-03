@@ -9,7 +9,7 @@ void diceGame() {
     char choice;
     cin.ignore();
     do {
-        cout << "\n--- Dice Rolling Game ---\n";
+        cout << "\n=== Dice Rolling Game ===\n";
         cout << "Press Enter...";
         cin.ignore();
 
@@ -51,7 +51,7 @@ void printBoard() {
             if(j<2) cout << "|";
         }
         cout << "\n";
-        if(i<2) cout << "---|---|---\n";
+        if(i<2) cout << "===|===|===\n";
     }
     cout << endl;
 }
@@ -150,16 +150,30 @@ void aiInsane() {
     }
     if(moveRow!=-1 && moveCol!=-1) board[moveRow][moveCol] = 'O';
 }
+    void resetBoard() {
+    int num = 1;
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            board[i][j] = '0' + num;
+            num++;
+        }
+    }
+}
 void ticTacToeAI() {
     initBoard();
     int move, turns = 0;
     char player = 'X';
     int difficulty;
-
-    cout << "\nSelect Computer Difficulty:\n1. Easy\n2. Medium\n3. Insane\nChoice: ";
+    char choice;
+    cin.ignore();
+    cout << "\n=== Tic Tac Toe ===\n";
+    cout << "\nSelect Difficulty:\n1. Easy\n2. Medium\n3. Insane\nChoose: ";
     cin >> difficulty;
-
-    while(true) {
+do{
+        resetBoard();
+        turns =0;
+        player ='X';
+    while (true) {
         printBoard();
         if(player=='X') {
             cout << "Your turn (X). Enter move (1-9): ";
@@ -177,9 +191,9 @@ void ticTacToeAI() {
                 player='O';
             } else {
                 cout << "Invalid move. Try again.\n";
+                break;
             }
         } else { 
-            cout << "Computer is thinking...\n";
             if(difficulty==1) aiEasy();
             else if(difficulty==2) aiMedium();
             else aiInsane();
@@ -198,7 +212,13 @@ void ticTacToeAI() {
             break;
         }
     }
+        cout << "Play again? (y/n): ";
+        cin >> choice;
+        cin.ignore();
+        
+}while(choice == 'y' || choice == 'Y');
 }
+        
 int main() {
     srand(time(0));
     char option;
